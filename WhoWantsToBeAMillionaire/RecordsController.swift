@@ -17,19 +17,6 @@ class RecordsController: UIViewController {
         tableView.reloadData()
     }
     
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .medium
-        return dateFormatter
-    }()
-    
-    private let numberFormatter: NumberFormatter = {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .percent
-        return numberFormatter
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,9 +35,8 @@ extension RecordsController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordCell", for: indexPath) as! RecordCell
-        let name = dateFormatter.string(from: Game.shared.results[indexPath.row].name)
-        let record = numberFormatter.string(from: Game.shared.results[indexPath.row].answered as NSNumber)
-        cell.configure(name: name, record: record ?? "---")
+        let result = Game.shared.results[indexPath.row]
+        cell.configure(result: result)
         return cell
     }
     
