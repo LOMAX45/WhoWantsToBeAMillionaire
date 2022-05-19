@@ -8,31 +8,22 @@
 import Foundation
 
 struct Question: Equatable {
+    
+    //MARK: Constants
     let question: String
-    var answers: [String]
     let correctAnswer: String
     
+    //MARK: Properties
+    var answers: [String]
+
+    //MARK: Initializations
     init(question: String, answers: [String], correctAnswer: String) {
         self.question = question
         self.answers = answers
         self.correctAnswer = correctAnswer
     }
     
-// MARK: Private functions
-    
-    private func roundToCustomFormat(value: Double, roundTo: Double) -> Double {
-        return Double(round(value * roundTo)) / roundTo
-    }
-    
-    private func getSetAttempt() -> Set<Int> {
-        var hintResultSet = Set<Int>()
-        while hintResultSet.count < 2 {
-            let randomIndex = Int.random(in: 0..<4)
-            hintResultSet.insert(randomIndex)
-        }
-        return hintResultSet
-    }
-    
+    //MARK: Functions
     func checkAnswer(answer: String) -> Bool {
         return answer == self.correctAnswer
     }
@@ -66,6 +57,20 @@ struct Question: Equatable {
         } while answers[hintResults[0]] == correctAnswer || answers[hintResults[1]] == correctAnswer
         answers[hintResults[0]] = ""
         answers[hintResults[1]] = ""
+    }
+    
+    // MARK: Private functions
+    private func roundToCustomFormat(value: Double, roundTo: Double) -> Double {
+        return Double(round(value * roundTo)) / roundTo
+    }
+    
+    private func getSetAttempt() -> Set<Int> {
+        var hintResultSet = Set<Int>()
+        while hintResultSet.count < 2 {
+            let randomIndex = Int.random(in: 0..<4)
+            hintResultSet.insert(randomIndex)
+        }
+        return hintResultSet
     }
     
 }

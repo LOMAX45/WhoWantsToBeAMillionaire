@@ -15,6 +15,7 @@ protocol GameControllerdelegate: AnyObject {
 
 class GameController: UIViewController {
     
+    // MARK: Properties
     weak var delegate: GameControllerdelegate?
     
     var questions = allQuestions
@@ -22,6 +23,8 @@ class GameController: UIViewController {
     var gameSession:GameSession?
     var isResetBackgroundButtonNeeded: UIButton?
     var isRemoveVoteResultsLabelNeeded: Bool?
+    var difficalty: Difficulty?
+    var questionOrderStrategy: QuestionsOrderStrategy?
     
     @IBOutlet weak var hintsStack: UIStackView!
     @IBOutlet weak var answersStack: UIStackView!
@@ -36,11 +39,16 @@ class GameController: UIViewController {
     @IBOutlet weak var answerD: UIButton!
     @IBOutlet weak var voteResultslabel: UILabel!
     
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        questions = getQuestionsList(from: questions)
         showQuestion(withQuestion: questions[questionCounter])
+        
     }
     
+    //MARK: Functions
     @IBAction func answerSelected(_ sender: UIButton) {
         if questions[questionCounter].checkAnswer(answer: sender.currentTitle ?? "") && questionCounter < questions.count - 1 {
             questionCounter += 1
@@ -51,7 +59,7 @@ class GameController: UIViewController {
             }
             self.delegate?.didEndGame(withResult: questionCounter)
             Game.shared.addResult()
-            dismiss(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -87,7 +95,7 @@ class GameController: UIViewController {
         }
     }
     
-// MARK: Private functions
+    // MARK: Private functions
     private func highlightButton(button: UIButton) {
         button.backgroundColor = UIColor.orange
         isResetBackgroundButtonNeeded = button
@@ -97,7 +105,7 @@ class GameController: UIViewController {
         button.backgroundColor = .none
         isResetBackgroundButtonNeeded = nil
     }
-
+    
     
     private func showQuestion(withQuestion question: Question) {
         if isResetBackgroundButtonNeeded != nil {
@@ -120,4 +128,13 @@ class GameController: UIViewController {
         voteResultslabel.text = "A: \(results[0])%; B: \(results[1])%; C: \(results[2])%; D: \(results[3])%"
     }
     
+    private func getQuestionsList(from questions: [Question]) -> [Question] {
+        if difficalty == .easy {
+            questionOrderStrategy = ConsistentQuestionsOrderStrategy()
+        } else {
+            questionOrderStrategy = RandomQuestionsOrderStrategy()
+        }
+        guard let questionOrderStrategy = questionOrderStrategy else { return questions }
+        return (questionOrderStrategy.createQuestionsOrder(from: questions))
+    }
 }

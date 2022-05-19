@@ -9,12 +9,14 @@ import UIKit
 
 class RecordCell: UITableViewCell {
     
+    //MARK: Properties
     @IBOutlet weak var recordNameLabel: UILabel!
     @IBOutlet weak var recordValueLabel: UILabel!
     @IBOutlet weak var hint50to50Icon: UIImageView!
     @IBOutlet weak var callFriendIcon: UIImageView!
     @IBOutlet weak var auditoryHelpIcon: UIImageView!
     
+    //MARK: Private properties
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm:ss"
@@ -27,11 +29,7 @@ class RecordCell: UITableViewCell {
         return numberFormatter
     }()
     
-    func configure(name: String, record: String) {
-        recordNameLabel.text = name
-        recordValueLabel.text = record
-    }
-    
+    //MARK: Functions
     func configure(result: Result) {
         recordNameLabel.text = dateFormatter.string(from:result.name)
         recordValueLabel.text = numberFormatter.string(from: result.answered as NSNumber)

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C136F6392832488200BF2DF6 /* ResultsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C136F6382832488200BF2DF6 /* ResultsCaretaker.swift */; };
+		C1E1C0F528361CFD00678A68 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E1C0F428361CFD00678A68 /* Difficulty.swift */; };
+		C1E1C117283639F600678A68 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E1C116283639F600678A68 /* SettingsController.swift */; };
+		C1E1C1192836579F00678A68 /* QuestionsOrderStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E1C1182836579F00678A68 /* QuestionsOrderStrategy.swift */; };
 		C1E91DF0282E422E00B490CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E91DEF282E422E00B490CF /* AppDelegate.swift */; };
 		C1E91DF2282E422E00B490CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E91DF1282E422E00B490CF /* SceneDelegate.swift */; };
 		C1E91DF7282E422E00B490CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E91DF5282E422E00B490CF /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		C136F6382832488200BF2DF6 /* ResultsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCaretaker.swift; sourceTree = "<group>"; };
+		C1E1C0F428361CFD00678A68 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		C1E1C116283639F600678A68 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		C1E1C1182836579F00678A68 /* QuestionsOrderStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsOrderStrategy.swift; sourceTree = "<group>"; };
 		C1E91DEC282E422E00B490CF /* WhoWantsToBeAMillionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoWantsToBeAMillionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1E91DEF282E422E00B490CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1E91DF1282E422E00B490CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 			children = (
 				C1E91E0F282E55DA00B490CF /* Game.swift */,
 				C136F6382832488200BF2DF6 /* ResultsCaretaker.swift */,
+				C1E1C0F428361CFD00678A68 /* Difficulty.swift */,
+				C1E1C1182836579F00678A68 /* QuestionsOrderStrategy.swift */,
 			);
 			path = Patterns;
 			sourceTree = "<group>";
@@ -85,6 +93,7 @@
 				C1E91E0B282E545700B490CF /* GameController.swift */,
 				C1E91E0D282E548700B490CF /* RecordsController.swift */,
 				C1E91E14282E7DEF00B490CF /* RecordCell.swift */,
+				C1E1C116283639F600678A68 /* SettingsController.swift */,
 				C136F6372832486100BF2DF6 /* Patterns */,
 				C1E91E06282E516300B490CF /* QuestionsArray */,
 				C1E91E03282E4EA300B490CF /* Models */,
@@ -195,9 +204,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1E91E0E282E548700B490CF /* RecordsController.swift in Sources */,
+				C1E1C117283639F600678A68 /* SettingsController.swift in Sources */,
 				C1E91E10282E55DA00B490CF /* Game.swift in Sources */,
+				C1E1C1192836579F00678A68 /* QuestionsOrderStrategy.swift in Sources */,
 				C1E91E12282E57C500B490CF /* GameSession.swift in Sources */,
 				C1E91E05282E4EB900B490CF /* Question.swift in Sources */,
+				C1E1C0F528361CFD00678A68 /* Difficulty.swift in Sources */,
 				C1E91E15282E7DEF00B490CF /* RecordCell.swift in Sources */,
 				C1E91DF0282E422E00B490CF /* AppDelegate.swift in Sources */,
 				C1E91E08282E518200B490CF /* QuestionsArray.swift in Sources */,

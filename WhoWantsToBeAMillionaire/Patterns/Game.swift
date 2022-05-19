@@ -17,21 +17,25 @@ struct Result: Codable {
 
 class Game {
     
+    //MARK: Constants
     static let shared = Game()
-    
     private let resultsCaretaker = ResultsCaretaker()
-    
-    var gameSession: GameSession?
     private(set) var results: [Result] = [] {
         didSet {
             resultsCaretaker.save(results: results)
         }
     }
     
+    //MARK: Properties
+    var gameSession: GameSession?
+    var difficalty: Difficulty = .easy
+    
+    //MARK: Initialization
     private init() {
         self.results = self.resultsCaretaker.retrieveRecords()
     }
     
+    //MARK: Functions
     func addResult() {
         guard let answeredQuestions = gameSession?.correctAnweredQuestions,
               let questionsQuantity = gameSession?.questionsQuantity,
