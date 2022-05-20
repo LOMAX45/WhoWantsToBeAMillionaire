@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GameControllerdelegate: AnyObject {
-    func didEndGame(withResult result: Int)
+    func saveResult(withResult result: Int)
     
     func didUseHint(isUsedFriendCall: Bool, isUsedAuditoryHelp: Bool, isUsed50to50Hint: Bool)
 }
@@ -32,7 +32,7 @@ class GameController: UIViewController {
     @IBOutlet weak var callFriendButton: UIButton!
     @IBOutlet weak var auditoryHelpButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var QuestionNumberLabel: UILabel!
+    @IBOutlet weak var questionNumberLabel: UILabel!
     @IBOutlet weak var answerA: UIButton!
     @IBOutlet weak var answerB: UIButton!
     @IBOutlet weak var answerC: UIButton!
@@ -46,18 +46,22 @@ class GameController: UIViewController {
         questions = getQuestionsList(from: questions)
         showQuestion(withQuestion: questions[questionCounter])
         
+        gameSession?.correctAnweredQuestions.addObserver(self, options: [.new, .initial], closure: { [weak self] (correctAnweredQuestions, _) in
+            self?.questionNumberLabel.text = "Вопрос №\(correctAnweredQuestions + 1) из \(self?.questions.count ?? 0)"
+        })
     }
     
     //MARK: Functions
     @IBAction func answerSelected(_ sender: UIButton) {
         if questions[questionCounter].checkAnswer(answer: sender.currentTitle ?? "") && questionCounter < questions.count - 1 {
             questionCounter += 1
+            self.delegate?.saveResult(withResult: questionCounter)
             showQuestion(withQuestion: questions[questionCounter])
         } else {
             if questionCounter == questions.count - 1 {
                 questionCounter += 1
             }
-            self.delegate?.didEndGame(withResult: questionCounter)
+            self.delegate?.saveResult(withResult: questionCounter)
             Game.shared.addResult()
             self.navigationController?.popViewController(animated: true)
         }
@@ -115,7 +119,6 @@ class GameController: UIViewController {
             voteResultslabel.text = ""
             isRemoveVoteResultsLabelNeeded = nil
         }
-        QuestionNumberLabel.text = "Вопрос №\(questionCounter + 1)"
         questionLabel.text = question.question
         answerA.setTitle(question.answers[0], for: .normal)
         answerB.setTitle(question.answers[1], for: .normal)

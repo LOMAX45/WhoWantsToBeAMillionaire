@@ -14,7 +14,7 @@ class GameSession {
     let questionsQuantity: Int
     
     //MARK: Properties
-    var correctAnweredQuestions = 0
+    var correctAnweredQuestions = Observable<Int>(0)
     var isUsedFriendCall = false
     var isUsedAuditoryHelp = false
     var isUsed50to50Hint = false
@@ -27,8 +27,8 @@ class GameSession {
 }
 
 extension GameSession: GameControllerdelegate {
-    func didEndGame(withResult result: Int) {
-        self.correctAnweredQuestions = result
+    func saveResult(withResult result: Int) {
+        self.correctAnweredQuestions.value = result
     }
     
     func didUseHint(isUsedFriendCall: Bool, isUsedAuditoryHelp: Bool, isUsed50to50Hint: Bool) {

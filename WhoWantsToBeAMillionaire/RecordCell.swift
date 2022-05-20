@@ -35,15 +35,15 @@ class RecordCell: UITableViewCell {
         recordValueLabel.text = numberFormatter.string(from: result.answered as NSNumber)
         if result.isUsed50to50Hint == true {
             hint50to50Icon.image = hint50to50Icon.image?.withRenderingMode(.alwaysTemplate)
-            hint50to50Icon.tintColor = UIColor.white
+            hint50to50Icon.tintColor = UIColor.darkGray
         }
         if result.isUsedFriendCall == true {
             callFriendIcon.image = callFriendIcon.image?.withRenderingMode(.alwaysTemplate)
-            callFriendIcon.tintColor = UIColor.white
+            callFriendIcon.tintColor = UIColor.darkGray
         }
         if result.isUsedAuditoryHelp == true {
             auditoryHelpIcon.image = auditoryHelpIcon.image?.withRenderingMode(.alwaysTemplate)
-            auditoryHelpIcon.tintColor = UIColor.white
+            auditoryHelpIcon.tintColor = UIColor.darkGray
         }
     }
     

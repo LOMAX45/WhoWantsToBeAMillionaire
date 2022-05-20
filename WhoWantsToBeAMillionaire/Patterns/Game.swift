@@ -45,7 +45,7 @@ class Game {
               let isUsed50to50Hint = gameSession?.isUsed50to50Hint else {
             return
         }
-        let percent = Double(answeredQuestions) / Double(questionsQuantity)
+        let percent = Double(answeredQuestions.value) / Double(questionsQuantity)
         let result = Result(name: date, answered: percent, isUsedFriendCall: isUsedFriendCall, isUsedAuditoryHelp: isUsedAuditoryHelp, isUsed50to50Hint: isUsed50to50Hint)
         results.append(result)
         gameSession = nil
