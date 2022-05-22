@@ -7,20 +7,24 @@
 
 import Foundation
 
-struct Question: Equatable {
-    
-    //MARK: Constants
-    let question: String
-    let correctAnswer: String
-    
+struct Question: Equatable, Codable {
+
     //MARK: Properties
+    var question: String
     var answers: [String]
+    var correctAnswer: String
 
     //MARK: Initializations
     init(question: String, answers: [String], correctAnswer: String) {
         self.question = question
         self.answers = answers
         self.correctAnswer = correctAnswer
+    }
+    
+    init() {
+        question = ""
+        correctAnswer = ""
+        answers = []
     }
     
     //MARK: Functions
@@ -71,6 +75,23 @@ struct Question: Equatable {
             hintResultSet.insert(randomIndex)
         }
         return hintResultSet
+    }
+    
+    //MARK: Builder functions
+    func build() -> Question {
+        return Question(question: question, answers: answers, correctAnswer: correctAnswer)
+    }
+    
+    mutating func setQuestion(_ question: String) {
+        self.question = question
+    }
+    
+    mutating func setCorrectAnswer(_ correctAnswer: String) {
+        self.correctAnswer = correctAnswer
+    }
+    
+    mutating func setAnswers(_ answers: [String]) {
+        self.answers = answers
     }
     
 }

@@ -26,6 +26,13 @@ class Game {
         }
     }
     
+    private let questionsCaretaker = QuestionsCaretaker()
+    var questions: [Question] = [] {
+        didSet {
+            questionsCaretaker.save(questions: questions)
+        }
+    }
+    
     //MARK: Properties
     var gameSession: GameSession?
     var difficalty: Difficulty = .easy
@@ -33,6 +40,7 @@ class Game {
     //MARK: Initialization
     private init() {
         self.results = self.resultsCaretaker.retrieveRecords()
+        self.questions = self.questionsCaretaker.retrieveQuestions()
     }
     
     //MARK: Functions

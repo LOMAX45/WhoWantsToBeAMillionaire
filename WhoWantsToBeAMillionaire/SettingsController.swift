@@ -36,5 +36,8 @@ class SettingsController: UIViewController {
         Game.shared.difficalty = self.selectedDifficulty
         self.navigationController?.popViewController(animated: true)
     }
+    @IBAction func removeQuestions(_ sender: Any) {
+        Game.shared.questions = allQuestions
+    }
     
 }

@@ -18,7 +18,7 @@ class GameController: UIViewController {
     // MARK: Properties
     weak var delegate: GameControllerdelegate?
     
-    var questions = allQuestions
+    var questions = Game.shared.questions
     var questionCounter = 0
     var gameSession:GameSession?
     var isResetBackgroundButtonNeeded: UIButton?
@@ -47,7 +47,8 @@ class GameController: UIViewController {
         showQuestion(withQuestion: questions[questionCounter])
         
         gameSession?.correctAnweredQuestions.addObserver(self, options: [.new, .initial], closure: { [weak self] (correctAnweredQuestions, _) in
-            self?.questionNumberLabel.text = "Вопрос №\(correctAnweredQuestions + 1) из \(self?.questions.count ?? 0)"
+            guard let questionsCount = self?.questions.count else { return }
+            self?.questionNumberLabel.text = "Вопрос №\(correctAnweredQuestions + 1) из \(questionsCount) пройдено (\(Int(Double(correctAnweredQuestions) / Double(questionsCount) * 100)))%"
         })
     }
     
