@@ -7,16 +7,14 @@
 
 import UIKit
 
-protocol GameControllerdelegate: AnyObject {
+protocol GameControllerDelegate: AnyObject {
     func saveResult(withResult result: Int)
-    
-    func didUseHint(isUsedFriendCall: Bool, isUsedAuditoryHelp: Bool, isUsed50to50Hint: Bool)
 }
 
 class GameController: UIViewController {
     
     // MARK: Properties
-    weak var delegate: GameControllerdelegate?
+    weak var delegate: GameControllerDelegate?
     
     var questions = Game.shared.questions
     var questionCounter = 0
@@ -71,32 +69,30 @@ class GameController: UIViewController {
     @IBAction func useHint(_ sender: UIButton) {
         switch sender {
         case hint50to50Button:
-            questions[questionCounter].use50to50Hint()
-            showQuestion(withQuestion: questions[questionCounter])
-            self.delegate?.didUseHint(isUsedFriendCall: false, isUsedAuditoryHelp: false, isUsed50to50Hint: true)
-            hint50to50Button.isEnabled = false
+            let hintsActionFacade = HintsActionsFacade(hint: Hint.hint50to50Button, currentQuestion: questions[questionCounter])
+            let question = hintsActionFacade.use50to50Hint()
+            showQuestion(withQuestion: question)
         case callFriendButton:
-            guard let friendAnswer = questions[questionCounter].useFriendCall().first?.key else { return }
-            switch friendAnswer {
-            case 0:
-                highlightButton(button: answerA)
-            case 1:
-                highlightButton(button: answerB)
-            case 2:
-                highlightButton(button: answerC)
-            case 3:
-                highlightButton(button: answerD)
-            default:
-                break
-            }
-            self.delegate?.didUseHint(isUsedFriendCall: true, isUsedAuditoryHelp: false, isUsed50to50Hint: false)
-            callFriendButton.isEnabled = false
+            let hintsActionFacade = HintsActionsFacade(hint: Hint.callFriendButton, currentQuestion: questions[questionCounter])
+            guard let friendAnswer = hintsActionFacade.callfriend().first?.key else { return }
+                        switch friendAnswer {
+                        case 0:
+                            highlightButton(button: answerA)
+                        case 1:
+                            highlightButton(button: answerB)
+                        case 2:
+                            highlightButton(button: answerC)
+                        case 3:
+                            highlightButton(button: answerD)
+                        default:
+                            break
+                        }
         case auditoryHelpButton:
-            let voteResults = questions[questionCounter].useAuditoryHelp()
+            let hintsActionFacade = HintsActionsFacade(hint: Hint.auditoryHelpButton, currentQuestion: questions[questionCounter])
+            let voteResults = hintsActionFacade.useAuditoryHelp()
             addVoteResults(results: voteResults)
-            self.delegate?.didUseHint(isUsedFriendCall: false, isUsedAuditoryHelp: true, isUsed50to50Hint: false)
-            auditoryHelpButton.isEnabled = false
-        default: break
+        default:
+            break
         }
     }
     

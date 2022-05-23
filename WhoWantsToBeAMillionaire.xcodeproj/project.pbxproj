@@ -27,6 +27,7 @@
 		C1E91E10282E55DA00B490CF /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E91E0F282E55DA00B490CF /* Game.swift */; };
 		C1E91E12282E57C500B490CF /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E91E11282E57C500B490CF /* GameSession.swift */; };
 		C1E91E15282E7DEF00B490CF /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E91E14282E7DEF00B490CF /* RecordCell.swift */; };
+		C1E9CE6C283B5A6800DE5F67 /* HintsActionsFasade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E9CE6B283B5A6800DE5F67 /* HintsActionsFasade.swift */; };
 		C1EE123A283AC2E5006FE66A /* QuestionsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EE1239283AC2E5006FE66A /* QuestionsCaretaker.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		C1E91E0F282E55DA00B490CF /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C1E91E11282E57C500B490CF /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		C1E91E14282E7DEF00B490CF /* RecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		C1E9CE6B283B5A6800DE5F67 /* HintsActionsFasade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintsActionsFasade.swift; sourceTree = "<group>"; };
 		C1EE1239283AC2E5006FE66A /* QuestionsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsCaretaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				C1E1C0F428361CFD00678A68 /* Difficulty.swift */,
 				C1E1C1182836579F00678A68 /* QuestionsOrderStrategy.swift */,
 				C1BF33672837B71800DD9355 /* Observer.swift */,
+				C1E9CE6B283B5A6800DE5F67 /* HintsActionsFasade.swift */,
 			);
 			path = Patterns;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				C1B483812838337A001E4F8B /* AddQuestionController.swift in Sources */,
 				C1E91E0A282E530900B490CF /* WelcomeController.swift in Sources */,
 				C1E91DF2282E422E00B490CF /* SceneDelegate.swift in Sources */,
+				C1E9CE6C283B5A6800DE5F67 /* HintsActionsFasade.swift in Sources */,
 				C1E91E0C282E545700B490CF /* GameController.swift in Sources */,
 				C136F6392832488200BF2DF6 /* ResultsCaretaker.swift in Sources */,
 			);

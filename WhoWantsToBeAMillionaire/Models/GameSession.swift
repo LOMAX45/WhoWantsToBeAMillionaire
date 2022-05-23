@@ -26,21 +26,9 @@ class GameSession {
     
 }
 
-extension GameSession: GameControllerdelegate {
+extension GameSession: GameControllerDelegate {
     func saveResult(withResult result: Int) {
         self.correctAnweredQuestions.value = result
-    }
-    
-    func didUseHint(isUsedFriendCall: Bool, isUsedAuditoryHelp: Bool, isUsed50to50Hint: Bool) {
-        if isUsedFriendCall {
-            self.isUsedFriendCall = isUsedFriendCall
-        }
-        if isUsedAuditoryHelp {
-            self.isUsedAuditoryHelp = isUsedAuditoryHelp
-        }
-        if isUsed50to50Hint {
-            self.isUsed50to50Hint = isUsed50to50Hint
-        }
     }
 }
 

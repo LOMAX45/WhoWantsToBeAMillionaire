@@ -52,7 +52,7 @@ struct Question: Equatable, Codable {
         return voteResults
     }
     
-    mutating func use50to50Hint() {
+    mutating func use50to50Hint() -> [String] {
         var hintResultSet = Set<Int>()
         var hintResults:[Int] = []
         repeat {
@@ -61,6 +61,7 @@ struct Question: Equatable, Codable {
         } while answers[hintResults[0]] == correctAnswer || answers[hintResults[1]] == correctAnswer
         answers[hintResults[0]] = ""
         answers[hintResults[1]] = ""
+        return answers
     }
     
     // MARK: Private functions
