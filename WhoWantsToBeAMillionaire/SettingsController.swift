@@ -38,6 +38,7 @@ class SettingsController: UIViewController {
     }
     @IBAction func removeQuestions(_ sender: Any) {
         Game.shared.questions = allQuestions
+        self.navigationController?.dismiss(animated: true)
     }
     
 }
