@@ -24,7 +24,7 @@ class WelcomeController: UIViewController {
         switch segue.identifier {
         case "StartGameSegue":
             guard let destination = segue.destination as? GameController else { return }
-            destination.gameSession = GameSession(quetionsQuantity: allQuestions.count)
+            destination.gameSession = GameSession(quetionsQuantity: Game.shared.questions.count)
             destination.delegate = destination.gameSession
             destination.difficalty = Game.shared.difficalty
             Game.shared.gameSession = destination.gameSession

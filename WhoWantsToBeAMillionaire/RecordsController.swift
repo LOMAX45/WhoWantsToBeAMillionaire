@@ -21,8 +21,8 @@ class RecordsController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
         tableView.delegate = self
+        tableView.dataSource = self
     }
     
 }
@@ -40,7 +40,7 @@ extension RecordsController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
