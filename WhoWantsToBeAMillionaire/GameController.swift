@@ -71,9 +71,11 @@ class GameController: UIViewController {
         case hint50to50Button:
             let hintsActionFacade = HintsActionsFacade(hint: Hint.hint50to50Button, currentQuestion: questions[questionCounter])
             let question = hintsActionFacade.use50to50Hint()
+            sender.isEnabled = false
             showQuestion(withQuestion: question)
         case callFriendButton:
             let hintsActionFacade = HintsActionsFacade(hint: Hint.callFriendButton, currentQuestion: questions[questionCounter])
+            sender.isEnabled = false
             guard let friendAnswer = hintsActionFacade.callfriend().first?.key else { return }
                         switch friendAnswer {
                         case 0:
@@ -89,6 +91,7 @@ class GameController: UIViewController {
                         }
         case auditoryHelpButton:
             let hintsActionFacade = HintsActionsFacade(hint: Hint.auditoryHelpButton, currentQuestion: questions[questionCounter])
+            sender.isEnabled = false
             let voteResults = hintsActionFacade.useAuditoryHelp()
             addVoteResults(results: voteResults)
         default:
