@@ -9,11 +9,12 @@ import Foundation
 
 class ResultsCaretaker {
     
+    //MARK: Constants
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
-    
     private let key = "records"
     
+    //MARK: Functions
     func save(results: [Result]) {
         do {
             let data = try self.encoder.encode(results)

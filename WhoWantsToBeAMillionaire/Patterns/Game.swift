@@ -17,21 +17,33 @@ struct Result: Codable {
 
 class Game {
     
+    //MARK: Constants
     static let shared = Game()
-    
     private let resultsCaretaker = ResultsCaretaker()
-    
-    var gameSession: GameSession?
     private(set) var results: [Result] = [] {
         didSet {
             resultsCaretaker.save(results: results)
         }
     }
     
-    private init() {
-        self.results = self.resultsCaretaker.retrieveRecords()
+    private let questionsCaretaker = QuestionsCaretaker()
+    var questions: [Question] = [] {
+        didSet {
+            questionsCaretaker.save(questions: questions)
+        }
     }
     
+    //MARK: Properties
+    var gameSession: GameSession?
+    var difficalty: Difficulty = .easy
+    
+    //MARK: Initialization
+    private init() {
+        self.results = self.resultsCaretaker.retrieveRecords()
+        self.questions = self.questionsCaretaker.retrieveQuestions()
+    }
+    
+    //MARK: Functions
     func addResult() {
         guard let answeredQuestions = gameSession?.correctAnweredQuestions,
               let questionsQuantity = gameSession?.questionsQuantity,
@@ -41,7 +53,7 @@ class Game {
               let isUsed50to50Hint = gameSession?.isUsed50to50Hint else {
             return
         }
-        let percent = Double(answeredQuestions) / Double(questionsQuantity)
+        let percent = Double(answeredQuestions.value) / Double(questionsQuantity)
         let result = Result(name: date, answered: percent, isUsedFriendCall: isUsedFriendCall, isUsedAuditoryHelp: isUsedAuditoryHelp, isUsed50to50Hint: isUsed50to50Hint)
         results.append(result)
         gameSession = nil

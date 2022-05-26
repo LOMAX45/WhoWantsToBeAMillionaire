@@ -9,12 +9,14 @@ import UIKit
 
 class RecordCell: UITableViewCell {
     
+    //MARK: Properties
     @IBOutlet weak var recordNameLabel: UILabel!
     @IBOutlet weak var recordValueLabel: UILabel!
     @IBOutlet weak var hint50to50Icon: UIImageView!
     @IBOutlet weak var callFriendIcon: UIImageView!
     @IBOutlet weak var auditoryHelpIcon: UIImageView!
     
+    //MARK: Private properties
     private let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm:ss"
@@ -27,25 +29,21 @@ class RecordCell: UITableViewCell {
         return numberFormatter
     }()
     
-    func configure(name: String, record: String) {
-        recordNameLabel.text = name
-        recordValueLabel.text = record
-    }
-    
+    //MARK: Functions
     func configure(result: Result) {
         recordNameLabel.text = dateFormatter.string(from:result.name)
         recordValueLabel.text = numberFormatter.string(from: result.answered as NSNumber)
         if result.isUsed50to50Hint == true {
             hint50to50Icon.image = hint50to50Icon.image?.withRenderingMode(.alwaysTemplate)
-            hint50to50Icon.tintColor = UIColor.white
+            hint50to50Icon.tintColor = UIColor.darkGray
         }
         if result.isUsedFriendCall == true {
             callFriendIcon.image = callFriendIcon.image?.withRenderingMode(.alwaysTemplate)
-            callFriendIcon.tintColor = UIColor.white
+            callFriendIcon.tintColor = UIColor.darkGray
         }
         if result.isUsedAuditoryHelp == true {
             auditoryHelpIcon.image = auditoryHelpIcon.image?.withRenderingMode(.alwaysTemplate)
-            auditoryHelpIcon.tintColor = UIColor.white
+            auditoryHelpIcon.tintColor = UIColor.darkGray
         }
     }
     
